@@ -1,5 +1,5 @@
 {-# LANGUAGE NoMonomorphismRestriction,TupleSections #-}
-module ListUtils
+module NanoUtils.List
     (
       eqClasses
     , rcompare
@@ -18,14 +18,16 @@ module ListUtils
     , removeAt
     ) where
 
-import TupleUtils (ascOrder)
+import NanoUtils.Tuple (ascOrder)
 import Data.List
 import Data.Function
 
+-- |removeAt
 removeAt i = (\(l,r) -> (head l,r)).
              foldr (\(j,v) (l,r) -> if i==j then (v:l,r) else (l,v:r)) ([],[]).
              zip [0..]
 
+-- |leaveOneOuts
 leaveOneOuts xs = leaveOneOuts' [] xs
 leaveOneOuts' ls [] = []
 leaveOneOuts' ls rs = (ls ++ tail rs) : leaveOneOuts' (ls++[head rs]) (tail rs)
@@ -42,38 +44,40 @@ chooseSortedPairs xs ys = concat.map (\x -> map (ascOrder.(x,)) ys) $ xs
 unfoldr' :: (b -> (a,b)) -> b -> [a]
 unfoldr' f = unfoldr (\b -> Just (f b))
 
+-- |pushFixed
 pushFixed n x xs = take n (x:xs)
 
+-- |foldWhile
 foldWhile _ _ acc [] = acc
 foldWhile p f acc (x:xs)
   | p acc == True = foldWhile p f (f acc x) xs
   | otherwise = acc
 
---count the number of elements satisfying predicate
+-- |count the number of elements satisfying predicate
 countBy f = foldl' (\acc x -> if f x then acc+1 else acc) 0
 
---strict sum
+-- |strict sum
 sum' = foldl' (+) 0
 
---strict sum by
+-- |strict sum by
 sumBy' f = foldl' (\acc v -> acc + f v) 0
 
---print list
+-- |print list
 printList delim = intercalate delim.map show
 
---sort on f of the element
+-- |sort on f of the element
 sortOn f = sortBy (compare`on`f)
 
---reverse sort on f of the element
+-- |reverse sort on f of the element
 rsortOn f = sortBy (rcompare`on`f)
 
---reverse sort
+-- |reverse sort
 rsort = sortBy rcompare
 
---flip the compare function
+-- |flip the compare function
 rcompare x y = flip compare x y
 
---equivalence classes
+-- |equivalence classes
 eqClasses :: (a -> a -> Bool) -> [a] -> [[a]]
 eqClasses r xs = part xs []
     where part (a:as) acc = let (p1,p2) = partition (r a) as

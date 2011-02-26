@@ -1,5 +1,5 @@
 {-# LANGUAGE NoMonomorphismRestriction #-}
-module DoubleMap
+module NanoUtils.DoubleMap
     (
       empty
     , insert
@@ -24,5 +24,3 @@ filterWithKey f (DM (m1,m2)) =
 fromList = foldl' (\m (k,v) -> insert k v m) empty
 
 toKV (DM (m1,m2)) = m1
-
---runBoth k v f 
