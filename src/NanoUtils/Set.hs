@@ -10,7 +10,7 @@ import Control.Monad.Random
 import Control.Monad (liftM)
 import Data.Int
 import Data.List (partition)
-import ListUtils (sortOn,removeAt)
+import NanoUtils.List (sortOn,removeAt)
 import qualified Data.Set as S
 import qualified Data.Map as M
 import Data.HashTable (hashString)
