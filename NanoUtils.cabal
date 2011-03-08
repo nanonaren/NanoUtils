@@ -45,7 +45,7 @@ Cabal-version:       >=1.2
 
 Library
   -- Modules exported by the library.
-  Exposed-modules:     NanoUtils.Container, NanoUtils.DoubleMap, NanoUtils.List, NanoUtils.Map, NanoUtils.Set, NanoUtils.Tuple
+  Exposed-modules:     NanoUtils.Container, NanoUtils.DoubleMap, NanoUtils.List, NanoUtils.Map, NanoUtils.Set, NanoUtils.Tuple, NanoUtils.Monadic.List
   
   -- Packages needed in order to build this package.
   Build-depends:       base >= 3, containers >= 0.3, MonadRandom >= 0.1
