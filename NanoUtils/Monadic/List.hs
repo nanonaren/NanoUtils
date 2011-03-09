@@ -1,6 +1,7 @@
 module NanoUtils.Monadic.List
     (
       eqClassesM
+    , eqClassesTM
     , partitionM
     ) where
 
