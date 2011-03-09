@@ -16,11 +16,17 @@ module NanoUtils.List
     , chooseSortedPairs
     , leaveOneOuts
     , removeAt
+    , pairUp
     ) where
 
 import NanoUtils.Tuple (ascOrder)
 import Data.List
 import Data.Function
+
+-- |pair up elements. If odd number the last one will be on its own
+pairUp [] = []
+pairUp (x:[]) = [[x]]
+pairUp (x:y:xs) = [x,y] : pairUp xs
 
 -- |removeAt
 removeAt i = (\(l,r) -> (head l,r)).
