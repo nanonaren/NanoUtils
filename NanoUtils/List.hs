@@ -89,3 +89,5 @@ eqClasses r xs = part xs []
     where part (a:as) acc = let (p1,p2) = partition (r a) as
                             in part p2 ((a:p1):acc)
           part [] acc = acc
+
+--TODO: add the eqClassesT algorithm present in NanoUtils.Monadic.List

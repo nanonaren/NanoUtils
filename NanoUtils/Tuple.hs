@@ -3,6 +3,7 @@ module NanoUtils.Tuple
       swap
     , mapFst
     , mapSnd
+    , mapHomTup
     , ascOrder
     ) where
 
@@ -17,6 +18,10 @@ mapFst f (a,b) = (f a,b)
 -- |apply function to the second element of tuple
 mapSnd :: (b -> c) -> (a,b) -> (a,c)
 mapSnd f (a,b) = (a,f b)
+
+-- |apply function to a homogeneous tuple
+mapHomTup :: (a -> b) -> (a,a) -> (b,b)
+mapHomTup f (a,b) = (f a,f b)
 
 -- |order elements of tuple in ascending order
 ascOrder :: Ord a => (a,a) -> (a,a)
