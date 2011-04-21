@@ -13,6 +13,7 @@ module NanoUtils.List
     , foldWhile
     , pushFixed
     , unfoldr'
+    , choose2
     , chooseSortedPairs
     , leaveOneOuts
     , removeAt
@@ -25,7 +26,7 @@ import Data.Function
 
 -- |All 2-subsets of xs
 choose2 [] = []
-choose2 (x:xs) = [(x,y)|y<-xs] ++ choose2 xs
+choose2 (x:xs) = [[x,y]|y<-xs] ++ choose2 xs
 
 -- |pair up elements. If odd number the last one will be on its own
 pairUp [] = []
