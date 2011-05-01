@@ -18,11 +18,24 @@ module NanoUtils.List
     , leaveOneOuts
     , removeAt
     , pairUp
+    , multiplicity
+    , chunk
     ) where
 
 import NanoUtils.Tuple (ascOrder)
 import Data.List
 import Data.Function
+import qualified Data.Map as M
+
+-- |Chunk the list
+chunk :: Int -> [a] -> [[a]]
+chunk _ [] = []
+chunk n xs = let (l,r) = splitAt n xs
+             in l : chunk n r
+
+-- |Count the number of times each unique item appears
+multiplicity :: Ord a => [a] -> [(a,Int)]
+multiplicity = M.toList.M.fromListWith (+).flip zip (repeat 1)
 
 -- |All 2-subsets of xs
 choose2 [] = []
