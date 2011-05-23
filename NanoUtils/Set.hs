@@ -5,6 +5,7 @@ module NanoUtils.Set
     , randPartition
     , randFixedPartition
     , randPicks
+    , randPick
     ) where
 
 import Control.Monad.Random
@@ -38,6 +39,7 @@ randPicks len num xs = do
   (r,xs') <- randPick len xs
   liftM (fmap (r:)) $ randPicks (len-1) (num-1) xs'
 
+randPick :: RandomGen g => Int -> [a] -> Rand g (a,[a])
 randPick len xs = do
   num <- getRandomR (0,len-1)
   return.removeAt num $ xs
