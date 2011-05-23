@@ -4,6 +4,7 @@ module NanoUtils.Set
       randCoprimeFactors
     , randPartition
     , randFixedPartition
+    , randPicks
     ) where
 
 import Control.Monad.Random
@@ -31,6 +32,7 @@ randFixedPartition len n xs = do
   liftM (p:) $ randFixedPartition (len-n') n xs'
      where n' = if n > len then len else n
 
+randPicks :: RandomGen g => Int -> Int -> [a] -> Rand g ([a],[a])
 randPicks _ 0 xs = return (xs,[])
 randPicks len num xs = do
   (r,xs') <- randPick len xs
