@@ -68,6 +68,19 @@ chooseSortedPairs xs ys = concat.map (\x -> map (ascOrder.(x,)) ys) $ xs
 unfoldr' :: (b -> (a,b)) -> b -> [a]
 unfoldr' f = unfoldr (\b -> Just (f b))
 
+-- |Basically unfolding using function that doesn't already fit
+--  the unfoldr function signature.
+--  Lift a function (b -> a) that takes a seed and
+--  returns a value, and unfold a list of values
+--  by using the supplementary functions:
+--  a) stop - for determining if the returned value indicated stop
+--  b) g - for determining next seed based on previous seed and current value
+liftUnfoldr :: (b -> a) -> (a -> Bool) -> (b -> a -> b) -> b -> [a]
+liftUnfoldr f stop g start = unfoldr func start
+    where func = \x -> let y = f x
+                       in if stop y then Nothing
+                          else Just (y, g x y)
+
 -- |pushFixed
 pushFixed n x xs = take n (x:xs)
 
