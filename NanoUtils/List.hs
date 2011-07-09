@@ -13,6 +13,7 @@ module NanoUtils.List
     , foldWhile
     , pushFixed
     , unfoldr'
+    , liftUnfoldr
     , choose2
     , chooseSortedPairs
     , leaveOneOuts
