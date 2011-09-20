@@ -48,7 +48,7 @@ Library
   Exposed-modules:     NanoUtils.Container, NanoUtils.DoubleMap, NanoUtils.List, NanoUtils.Map, NanoUtils.Set, NanoUtils.Tuple, NanoUtils.Monadic.List
   
   -- Packages needed in order to build this package.
-  Build-depends:       base >= 3, containers >= 0.3, MonadRandom >= 0.1
+  Build-depends:       base, containers >= 0.4, MonadRandom >= 0.1
   
   -- Modules not exported by this package.
   -- Other-modules:       
